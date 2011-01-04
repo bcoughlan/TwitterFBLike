@@ -15,7 +15,7 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'TwitterFBLike', 
 	'author' => 'Barry Coughlan', 
-	'url' => '',
+	'url' => 'http://mediawiki.org/wiki/Extension:TwitterFBLike',
 	'description' => 'Template that inserts Twitter and Facebook "Like" buttons on a page',
 );
 
