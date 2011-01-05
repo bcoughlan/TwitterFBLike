@@ -37,7 +37,7 @@ function twitterFBLikeParserFunction_Magic( &$magicWords, $langCode ) {
 
 function twitterFBLikeParserFeedHead(&$out, &$sk) {
 	global $wgScriptPath;
-	$out->addHeadItem('twitterFBLike.css','<link rel="stylesheet" type="text/css" href="'.$wgScriptPath.'/extensions/TwitterFeed/TwitterFeed.css"/>');
+	$out->addHeadItem('twitterFBLike.css','<link rel="stylesheet" type="text/css" href="'.$wgScriptPath.'/extensions/TwitterFBLike/TwitterFBLike.css"/>');
 	return $out;
 }
 
