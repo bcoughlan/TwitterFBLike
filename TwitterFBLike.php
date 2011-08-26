@@ -80,12 +80,12 @@ function twitterFBLikeParserFunction_Render( &$parser, $param1 = '', $param2 = '
 		$url = $title->getFullURL();
 		if (!$url ) return "";
 		
-		$text = str_replace("+", "%20", $wgSitename . ":%20" . urlencode($title->getFullText()));
+		$text = str_replace("\"", "\\\"", $wgSitename . ": " . $title->getFullText());
 
 		
 		$output = '<div class="twitterFBLike_'.$size.' twitterFBLike_'.$urltitle.'" style="float: '.$float.'">
-					   <a style="display: none" href="http://twitter.com/share?url='.urlencode($url).'&text=' .
-					   $text .'" class="twitter-share-button" '.$twitterextra.' >Tweet</a>
+					   <a style="display: none" href="http://twitter.com/share" 
+					   class="twitter-share-button" data-text="'.$text.'" data-url="'.$url.'" '.$twitterextra.' >Tweet</a>
 					   <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
 					   <iframe src="http://www.facebook.com/plugins/like.php?href='.$url.'&layout='.$layout.
 					   '&show_faces=false&width=450&action='.$action.'&colorscheme=light&height=65"
