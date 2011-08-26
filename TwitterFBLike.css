@@ -1,4 +1,9 @@
+/* Hack to change the width of the Twitter one */	
+.twitter-count-horizontal {
+	width: 101px !important;
+	height: 21px !important;
+}
 
-.twitterFBLike {
-		
+.twitter-count-vertical {
+	height: 67px !important;
 }

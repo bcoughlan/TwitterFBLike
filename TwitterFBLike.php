@@ -42,7 +42,7 @@ function twitterFBLikeParserFeedHead(&$out, &$sk) {
 }
 
  
-function twitterFBLikeParserFunction_Render( &$parser, $param1 = '', $param2 = '' ) {
+function twitterFBLikeParserFunction_Render( &$parser, $param1 = '', $param2 = '', $param3 = '' ) {
 		global $wgSitename;
 	
 		if ($param1 === "left" || $param1 === "right") {
@@ -52,34 +52,47 @@ function twitterFBLikeParserFunction_Render( &$parser, $param1 = '', $param2 = '
 		}
 		
 		if ($param2 === "small") {
+			$twitterextra="";
+			$size="small";
 			$linebreak = "";
 			$layout = "button_count";
-			$height = "20";
+			$height = "21";
 		} else {
+			$twitterextra="data-count=\"vertical\"";
+			$size="big";
 			$layout = "box_count";
 			$linebreak = "<br />";
 			$height = "65";
 		}
 		
+		if ($param3 === "like") {
+			$width = 75;
+			$action="like";
+		} else {
+			$width = 115;
+			$action="recommend";
+		}
+		
 		//Get page title and URL
 		$title = $parser->getTitle();
-		$urltitle = $title->getPartialURL(); //e.g. "Main_Page"
 		if (!$title) return "";
+		$urltitle = $title->getPartialURL(); //e.g. "Main_Page"
 		$url = $title->getFullURL();
 		if (!$url ) return "";
 		
 		$text = str_replace("+", "%20", $wgSitename . ":%20" . urlencode($title->getFullText()));
 
-		//FB Like Button
-		$output = '<div class="twitterFBLike twitterFBLike_'.$urltitle.'" style="float: '.$float.'">
-				   <iframe src="http://www.facebook.com/plugins/like.php?href='.$url.'&layout='.$layout.
-				  '&show_faces=true&width=450&action=recommend&colorscheme=light&height=65"
-				   scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:'.$height.'px;"
-				   allowTransparency="true"></iframe>
-				   <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>'.$linebreak.'
-				   <a href="http://twitter.com/share?url='.urlencode($url).'&text=' .
-				   $text .'" class="twitter-share-button">Tweet</a>
+		
+		$output = '<div class="twitterFBLike_'.$size.' twitterFBLike_'.$urltitle.'" style="float: '.$float.'">
+					   <a style="display: none" href="http://twitter.com/share?url='.urlencode($url).'&text=' .
+					   $text .'" class="twitter-share-button" '.$twitterextra.' >Tweet</a>
+					   <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+					   <iframe src="http://www.facebook.com/plugins/like.php?href='.$url.'&layout='.$layout.
+					   '&show_faces=false&width=450&action='.$action.'&colorscheme=light&height=65"
+					   scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:'.$width.'px; height:'.$height.'px;"
+					   allowTransparency="true"></iframe>
 				   </div>';
-				  //var_dump($output);
+				   
+				   //
 		return $parser->insertStripItem($output, $parser->mStripState);;
 }
