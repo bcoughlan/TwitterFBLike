@@ -1,9 +1,16 @@
 /* Hack to change the width of the Twitter one */	
 .twitter-count-horizontal {
-	width: 101px !important;
-	height: 21px !important;
+	width: 90px !important;
+	height: 23px !important;
 }
 
 .twitter-count-vertical {
 	height: 67px !important;
+}
+
+.fb-like {
+	position: relative;
+	top: -2px;
+	border:none;
+	overflow:hidden; 
 }
